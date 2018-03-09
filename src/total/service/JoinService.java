@@ -11,8 +11,17 @@ public class JoinService {
 	@Autowired
 	SqlSessionTemplate template;
 	
-	
-	public boolean regeisterNewOne(Map map) {
-		return template.insert("member.regeisterNewOne", map)==1;
+	public boolean addNewOne(Map map) {
+		return template.insert("member.addNewOne", map)==1;
 	}
+	
+	public boolean existIdCheck(String id) {
+		return template.selectOne("member.getById", id)!=null;
+	}
+	
+	public boolean existEmailCheck(String email) {
+		return template.selectOne("member.getByEmail", email)!=null;
+	}
+	
+	
 }
